@@ -37,8 +37,9 @@ class MySqlExecutor {
                     try {
                         this.connection[database] = {};
                         this.connection[database].time = Date.now();
-                        this.mySqlConfig.database = database;
-                        this.connection[database].mySqlConnection = await mysql2.createConnection(this.mySqlConfig);
+                        let mySqlConfig = this.mySqlConfig.clone();
+                        mySqlConfig.database = database;
+                        this.connection[database].mySqlConnection = await mysql2.createConnection(mySqlConfig);
                         resolve(this.connection[database].mySqlConnection);
                     } catch(e) {
                         setTimeout(tryToReconnection, 15*1000);
