@@ -4,7 +4,8 @@ class OrderingQueue {
     }
 
     pop() {
-        this.queue.pop();
+        if (this.queue.length > 0) return this.queue.pop();
+        return null;
     }
 
     pushBack(data) {

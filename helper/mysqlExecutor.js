@@ -37,8 +37,13 @@ class MySqlExecutor {
                     try {
                         this.connection[database] = {};
                         this.connection[database].time = Date.now();
-                        let mySqlConfig = this.mySqlConfig.clone();
-                        mySqlConfig.database = database;
+                        let mySqlConfig = {
+                            host: this.mySqlConfig.host,
+                            port: this.mySqlConfig.port,
+                            user: this.mySqlConfig.user,
+                            password: this.mySqlConfig.password,
+                            database: database
+                        };
                         this.connection[database].mySqlConnection = await mysql2.createConnection(mySqlConfig);
                         resolve(this.connection[database].mySqlConnection);
                     } catch(e) {
@@ -88,7 +93,7 @@ class MySqlExecutor {
                         if (retry > 3) {
                             retry = 0;
                         } else {
-                            sqlData.pushBack(sqlData);
+                            this.queue.pushBack(sqlData);
                         }
                     }
                     setTimeout(handleRun, 200);
