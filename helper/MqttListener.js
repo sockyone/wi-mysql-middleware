@@ -43,7 +43,7 @@ class MqttListener {
         });
         this.client.subscribe(this.channel, {qos:2});
         this.client.on('message', (topic, payload)=>{
-            let databaseName = topic.slice(5);
+            let databaseName = topic.slice(7);
             this.output.push(databaseName ,payload.toString());
         });
     }
