@@ -1,0 +1,11 @@
+{
+  "mysql": {
+    "cloud": {
+      "host": "127.0.0.1",
+      "port": "",
+      "user": "hoangbd",
+      "password": "@Abc123456"
+    }
+  },
+  "mqtt": ""
+}
