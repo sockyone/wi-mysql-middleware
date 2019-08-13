@@ -8,5 +8,11 @@
       "prefix": "wi1004_"
     }
   },
-  "mqtt": "wss://mqtt-broker.i2g.cloud"
+  "mongo": {
+    "host": "127.0.0.1",
+    "port": "27017",
+    "db": "curveStatusDb"
+  },
+  "mqtt": "wss://mqtt-broker.i2g.cloud",
+  "port": 3029
 }
