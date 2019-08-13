@@ -40,7 +40,7 @@ class CurveStatusController {
 
     tryToImportToDb(mess) {
         return new Promise((resolve, reject)=>{
-            if (mess.event === 'delete') {
+            if (mess.event.toString() === 'delete') {
                 //try to delete
                 CurveStatus.findOneAndDelete({path: mess.path}, (err)=>{
                     if (err) {
