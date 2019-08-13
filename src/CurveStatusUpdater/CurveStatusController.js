@@ -39,23 +39,25 @@ class CurveStatusController {
     }
 
     tryToImportToDb(mess) {
-        return new Promise((resolve, reject)=>{
-            if (mess.event.toString() === 'delete') {
+        return new Promise((resolve, reject) => {
+            if (mess.eventType.toString() === 'delete') {
                 //try to delete
-                CurveStatus.findOneAndDelete({path: mess.path}, (err)=>{
+                CurveStatus.findOneAndDelete({path: mess.curvePath}, (err, rs)=>{
+                    console.log(rs);
                     if (err) {
+                        console.log(err);
                         reject(err);
                     } else {
                         resolve(null);
                     }
                 });
             } else {
-                CurveStatus.findOne({path: mess.path}, (err, rs)=>{
+                CurveStatus.findOne({path: mess.curvePath}, (err, rs)=>{
                     if (err) {
                         reject(err);
                     } else {
                         if (rs) {
-                            rs.updatedAt = mess.updatedAt;
+                            rs.updatedAt = new Date(mess.updatedAt);
                             rs.save((err)=>{
                                 if (err) {
                                     reject(err);
@@ -65,7 +67,7 @@ class CurveStatusController {
                             });
                         } else {
                             let newCurvePath = new CurveStatus({
-                                path: mess.path,
+                                path: mess.curvePath,
                                 user: mess.user,
                                 updatedAt: new Date("1970")
                             });
