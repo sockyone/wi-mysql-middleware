@@ -20,7 +20,6 @@
     let curveStatusController = require('./src/CurveStatusUpdater/CurveStatusController');
     let CurveMqttListener = require('./src/helper/CurveMqttListener');
 
-    let config = require('config');
     new MqttListener(orderQueue, config.get("mqtt"), { clean: false, clientId: "BACK_END_UPDATE_LISTENER", rejectUnauthorized: false });
     new CurveMqttListener(curveStatusController, config.get("mqtt"), { clean: false, clientId: "BACK_END_UPDATE_LISTENER_FOR_CURVE", rejectUnauthorized: false });
 
