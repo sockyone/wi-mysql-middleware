@@ -3,7 +3,7 @@
 
     let config = require("config");
 
-    mongoUrl = mongoUrl + config.get("mongo.host") + ":" + config.get("mongo.port") + "/" + config.get("mongo.db");
+    mongoUrl = process.env.mongoUrl || mongoUrl + config.get("mongo.host") + ":" + config.get("mongo.port") + "/" + config.get("mongo.db");
 
     const mongoose = require('mongoose');
     //connect mongo
