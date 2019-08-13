@@ -43,7 +43,6 @@ class CurveMqttListener {
         this.client.subscribe("curve/delete", {qos:2});
         this.client.subscribe("curve/update", {qos:2});
         this.client.on('message', (topic, payload)=>{
-            console.log(payload.toString());
             if (topic.toString() === "curve/delete") {
                 this.output.pushDeleteEvent(JSON.parse(payload.toString()));
             } else if (topic.toString() === "curve/update") {
