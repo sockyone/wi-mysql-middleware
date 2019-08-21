@@ -40,8 +40,8 @@ class CurveMqttListener {
                 console.log('Mqtt connection error:', e.message);
             }
         });
-        this.client.subscribe("curve/delete", {qos:2});
-        this.client.subscribe("curve/update", {qos:2});
+        this.client.subscribe("curve/delete/#", {qos:2});
+        this.client.subscribe("curve/update/#", {qos:2});
         this.client.on('message', (topic, payload)=>{
             console.log(payload.toString());
             if (topic.toString() === "curve/delete") {
