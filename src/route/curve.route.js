@@ -17,4 +17,8 @@ router.post('/get-status', (req, res)=>{
     });
 });
 
+router.post('/update-status', (req, res)=>{
+    let newStatus = req.body.curveStatus;
+});
+
 module.exports = router;

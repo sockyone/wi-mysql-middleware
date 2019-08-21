@@ -23,7 +23,7 @@
     new MqttListener(orderQueue, config.get("mqtt"), { clean: false, clientId: "BACK_END_UPDATE_LISTENER", rejectUnauthorized: false });
     new CurveMqttListener(curveStatusController, config.get("mqtt"), { clean: false, clientId: "BACK_END_UPDATE_LISTENER_FOR_CURVE", rejectUnauthorized: false });
 
-
+    
     let mySqlConfig = require("config").get("mysql.cloud");
 
     let MySqlExecutor = require("./src/helper/mysqlExecutor");

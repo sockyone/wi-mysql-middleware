@@ -58,14 +58,17 @@ class CurveStatusController {
                         reject(err);
                     } else {
                         if (rs) {
-                            rs.updatedAt = new Date(mess.updatedAt);
-                            rs.save((err)=>{
-                                if (err) {
-                                    reject(err);
-                                } else {
-                                    resolve(null);
-                                }
-                            });
+                            let dateInMess = new Date(mess.updatedAt);
+                            if (dateInMess.getTime() > new Date(rs.updatedAt).getTime()) {
+                                rs.updatedAt = dateInMess;
+                                rs.save((err)=>{
+                                    if (err) {
+                                        reject(err);
+                                    } else {
+                                        resolve(null);
+                                    }
+                                });
+                            }
                         } else {
                             let newCurvePath = new CurveStatus({
                                 path: mess.curvePath,
