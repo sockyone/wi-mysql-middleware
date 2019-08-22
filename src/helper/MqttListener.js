@@ -1,4 +1,5 @@
 const mqtt = require('mqtt');
+let prefix = process.env.DATABASE_PREFIX_CLOUD || require('config').mysql.cloud.prefix;
 
 class MqttListener {
     constructor(output, url, options) {
@@ -44,6 +45,7 @@ class MqttListener {
         this.client.subscribe(this.channel, {qos:2});
         this.client.on('message', (topic, payload)=>{
             let databaseName = topic.slice(7);
+            databaseName = prefix + databaseName;
             this.output.push(databaseName ,payload.toString());
         });
     }
