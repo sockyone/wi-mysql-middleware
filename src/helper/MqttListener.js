@@ -46,7 +46,7 @@ class MqttListener {
         this.client.on('message', (topic, payload)=>{
             let databaseName = topic.slice(7);
             databaseName = prefix + databaseName;
-            this.output.push(databaseName ,payload.toString());
+            this.output.push(databaseName , payload.toString());
         });
     }
 }
