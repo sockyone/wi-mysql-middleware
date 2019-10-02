@@ -6,7 +6,7 @@ class MqttListener {
         this.url = url;
         this.options = options;
         this.output = output;
-        this.channel = "syncUp/#"
+        this.channel = "syncUp/#";
         this.client = mqtt.connect(url, options);
         this.assign();
         this.timeStamp = 0;
@@ -46,7 +46,8 @@ class MqttListener {
         this.client.on('message', (topic, payload)=>{
             let databaseName = topic.slice(7);
             databaseName = prefix + databaseName;
-            this.output.push(databaseName , payload.toString());
+            console.log(JSON.parse(payload.toString()).data);
+            this.output.push(databaseName , JSON.parse(payload.toString()).data);
         });
     }
 }
